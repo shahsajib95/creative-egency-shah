@@ -1,0 +1,9 @@
+.feedbacks{
+    border: 1px solid rgb(204, 204, 204);
+}
+
+.circle-image{
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 50%;
+    width: 60px;
+}

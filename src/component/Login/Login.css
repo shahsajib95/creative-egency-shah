@@ -1,0 +1,13 @@
+.login{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.login-box {
+    border: 1px solid rgb(219, 219, 219);
+}
+.google-btn{
+    border-radius: 50px;
+    color: black;
+}

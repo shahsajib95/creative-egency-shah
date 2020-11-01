@@ -1,0 +1,18 @@
+.file-field input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    height: 200px;
+    width: 200px;
+}
+.btn-upload{
+    background-color: #DEFFED;
+    color: #009444;
+}

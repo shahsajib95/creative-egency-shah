@@ -1,0 +1,19 @@
+.table-container {
+    padding: 15vh;
+    background-color: white;
+    border-radius: 20px;
+    height: 100vh;
+}
+.table{
+    font-size: 15px;
+}
+.table-header{
+    background-color: #F5F6FA;
+    border-radius: 10px;
+}
+.table thead th{
+    font-size: 16px;
+    border: none;
+    border-bottom: none!important;
+    color: #686868
+}
