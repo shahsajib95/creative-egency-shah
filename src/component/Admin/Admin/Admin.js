@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router';
 import { UserContext } from '../../../App';
-import AdminData from '../AdminData/AdminData';
+import AddService from '../AddService/AddService';
 import AdminSidebar from '../AdminSidebar/AdminSidebar';
 import '../AdminSidebar/AdminSidebar.css'
 import CustomerOrder from '../CustomerOrder/CustomerOrder';
 import CustomerReview from '../CustomerReview/CustomerReview';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
-import Servicelist from '../ServiceList/Servicelist';
+import Adminservicelist from '../ServiceList/Adminservicelist/Adminservicelist';
+import Customerservicelist from '../ServiceList/Customerservicelist/Customerservicelist';
 
 const Admin = () => {
     const [loggedIn, setLoggedIn] = useContext(UserContext);
@@ -29,13 +30,14 @@ const Admin = () => {
         <div>
             <AdminSidebar/>
                 <Switch>
-                    <Route path="/serviceList">
-                        <Servicelist/>
-                    </Route>
+                   
                     {admin ?
                     <>
+                     <Route path="/ServiceList">
+                       <Adminservicelist/>
+                    </Route>
                     <Route path="/addService">
-                    <AdminData/>
+                    <AddService/>
                     </Route>
                     <Route path="/makeAdmin">
                         <MakeAdmin/>
@@ -43,6 +45,9 @@ const Admin = () => {
                     </>
                     :
                     <>
+                    <Route path="/ServiceList">
+                       <Customerservicelist/>
+                    </Route>
                     <Route path="/orders">
                         <CustomerOrder/>
                     </Route>

@@ -3,7 +3,7 @@ import bgImage from '../../../images/logos/Frame.png';
 import './Banner.css'
 const Banner = () => {
     return (
-        <div className="bg-warning banner">
+        <div className="bg-warning banner" id="home">
             <div className="container">
                 <div className="row d-flex align-items-center">
                     <div className="col-md-6">

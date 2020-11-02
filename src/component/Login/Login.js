@@ -12,7 +12,7 @@ const Login = () => {
     const [loggedIn, setLoggedIn] = useContext(UserContext);
     let history = useHistory(); 
     let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/addService" } };
+    let { from } = location.state || { from: { pathname: "/ServiceList" } };
 
     const logInWithGoogle = () =>{
         googleSignIn()
@@ -30,7 +30,7 @@ const Login = () => {
             </div>
             <div className="login-box p-5 mt-5">
                         <h3 className="text-center">Login With</h3>
-                        <span onClick={()=> logInWithGoogle()} style={{cursor: "pointer"}} className="google-btn form-control mt-5 ml-auto"><img src={google} alt=""/><span className="ml-5">Continue with Google</span></span>
+                        <span onClick={()=> logInWithGoogle()} style={{cursor: "pointer"}} className="google-btn form-control mt-5 ml-auto"><img src={google} alt=""/><span className="ml-5 login-text">Continue with Google</span></span>
                         <p className="mt-2">Don’t have an account? <u style={{color: '#3F90FC', cursor: 'pointer'}}>Create an account</u></p>
             </div>
          </div>

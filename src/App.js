@@ -4,7 +4,6 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import Admin from './component/Admin/Admin/Admin';
 import { createContext, useEffect, useState } from 'react';
 import Login from './component/Login/Login';
 import PrivateRoute from './component/PrivateRoute/PrivateRoute';
@@ -15,6 +14,7 @@ import Portfolio from './component/Home/Portfolio/Portfolio';
 import Reviews from './component/Home/Reviews/Reviews';
 import Contact from './component/Home/Contact/Contact';
 import Services from './component/Home/Services/Services';
+import Admin from './component/Admin/Admin/Admin';
 
 export const ServiceContext = createContext();
 export const UserContext = createContext();
@@ -64,9 +64,9 @@ function App() {
           <Route path="/login">
             <Login/>
           </Route>
-          <Route>
+          <PrivateRoute>
             <Admin/>
-          </Route>
+          </PrivateRoute>
         </Switch>
       </Router>
       </UserContext.Provider>

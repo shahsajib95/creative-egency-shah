@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './AdminData.css';
+import './AddService.css'
 import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons'

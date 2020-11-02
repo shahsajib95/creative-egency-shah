@@ -1,0 +1,45 @@
+
+@media only screen and (max-width: 750px){
+    .login-box, .login-text{
+        font-size: 12px;
+    }
+    .login-box img{
+        height: 15px;
+    }
+}
+@media only screen and (max-width: 584px){
+    .login-box .ml-5, .mx-5{
+        margin-left: 20px!important;
+        }
+    .login-box{
+        width: 300px;
+    }
+    
+}
+@media only screen and (max-width: 632px){
+    .login-box, .login-text{
+        font-size: 10px;
+    }
+    .login-box img{
+        height: 15px;
+    }
+    .login-box .p-5{
+        padding: 10px!important;
+    }
+}
+@media only screen and (max-width: 400px){
+    .h1, h1 {
+        font-size: 1.5rem;
+    }
+    .contact{
+        padding:0!important;
+    }
+    .contact .p-4{
+        padding: 0px!important;
+    }
+
+    .login-text{
+        font-size: 8px;
+    }
+}
+

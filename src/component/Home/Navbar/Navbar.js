@@ -17,7 +17,7 @@ const Navbar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ml-auto">
                             <li className="nav-item active">
-                                <Link to="/" className="nav-link" >Home</Link>
+                                <Link style={{cursor: 'pointer'}} to="home" smooth={true} duration={1000} className="nav-link" >Home</Link>
                             </li>
                             <li className="nav-item">
                                 <Link style={{cursor: 'pointer'}} to="portfolio" smooth={true} duration={1000} className="nav-link ml-3" >Our Portfolio</Link>
@@ -29,7 +29,7 @@ const Navbar = () => {
                                 <Link style={{cursor: 'pointer'}} to="contact" smooth={true} duration={1000} className="nav-link ml-3" >Contact us</Link>
                             </li>
                         </ul>
-                        <Link to="/login"><button className="btn main-btn ml-3">Login</button></Link>
+                        <a href="/login"><button className="btn main-btn ml-3">Login</button></a>
                     </div>
                 </nav>
             </div>
