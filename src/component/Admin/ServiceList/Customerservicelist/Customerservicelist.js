@@ -11,7 +11,7 @@ const Customerservicelist = () => {
     const user = JSON.parse(sessionStorage.getItem('user'))
     useEffect(() => {
         (async () => {
-            await fetch('http://localhost:5000/myOrders?email=' + user.email, {
+            await fetch('https://pure-harbor-44563.herokuapp.com/myOrders?email=' + user.email, {
                 method: 'GET',
                 headers: { 'Content-Type': 'Application/json' }
             })

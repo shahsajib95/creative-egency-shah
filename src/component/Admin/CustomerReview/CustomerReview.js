@@ -15,7 +15,7 @@ const CustomerReview = () => {
         setPreloader(true)
         const photo = loggedIn.photo;
         const allInfo = { ...data, photo };
-        fetch('http://localhost:5000/addreview', {
+        fetch('https://pure-harbor-44563.herokuapp.com/addreview', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(allInfo)
