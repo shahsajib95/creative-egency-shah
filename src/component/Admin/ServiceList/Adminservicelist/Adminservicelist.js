@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import './AdminServicelist.css'
 import { UserContext } from '../../../../App';
 import Preloader from '../../../Preloader/Preloader';
 
@@ -42,9 +43,13 @@ const Adminservicelist = () => {
 
 
     return (
-        <div className="content-wrapper">
-            <div className="container-fluid">
-                <div className="table-container">
+        <div className="content">
+            <div className="sidebar-head">
+            <h5>Service List</h5>
+            </div>
+                <div className="table-container mt-3">
+                {preloaderVisibility ? <Preloader/>
+                        :
                     <table className="table">
                         <thead className="table-header">
                             <tr>
@@ -55,7 +60,6 @@ const Adminservicelist = () => {
                                 <th scope="col">Status</th>
                             </tr>
                         </thead>
-
                         <tbody>
                             {allOrders.map(orders =>
                                 <tr key={orders._id}>
@@ -75,10 +79,9 @@ const Adminservicelist = () => {
                                     </td>
                                 </tr>)}
                         </tbody>
-                    </table>
-                </div>
+                    </table>}
+                </div>          
             </div>
-        </div>
     );
 };
 

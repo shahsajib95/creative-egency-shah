@@ -3,10 +3,14 @@ import './AddService.css'
 import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons'
+import { CircularProgress } from '@material-ui/core';
+import green from '@material-ui/core/colors/green';
 
 const AdminData = () => {
-
+    const [success, setSuccess] = useState(null);
+    const [preloader, setPreloader] = useState(false);
     const [file, setFile] = useState(null);
+    const color = green[50];
     const { register, handleSubmit, errors } = useForm();
 
     const handleFile = (e) => {
@@ -14,7 +18,7 @@ const AdminData = () => {
         setFile(newFile)
     }
     const onSubmit = data => {
-        console.log(data)
+        setPreloader(true)
         const formData = new FormData()
         formData.append('file', file)
         formData.append('title', data.title)
@@ -24,15 +28,32 @@ const AdminData = () => {
             method: 'POST',
             body: formData
         })
+        .then(result=>{
+            setPreloader(false)
+            setSuccess(result)
+            window.location.reload()
+        })
     }
 
 
 
     return (
-        <div className="content-wrapper">
-            <div className="container-fluid">
+        <div className="content">
+            <div className="sidebar-head">
+            <h5>Add Services</h5>
+            </div>
                 <div className="service-form">
-                    <form onSubmit={handleSubmit(onSubmit)} className="p-4" style={{ backgroundColor: 'white', borderRadius: '10px' }}>
+                {preloader && <div className="alert alert-warning mt-2" role="alert">
+                    <CircularProgress color={color} />
+                    Adding Service
+                    </div>}
+
+                    {success && 
+                    <div className="alert alert-success mt-2" role="alert">
+                    Service Added Successfully
+                    </div>}
+
+                    <form onSubmit={handleSubmit(onSubmit)} className="p-4 mt-3" style={{ backgroundColor: 'white', borderRadius: '10px' }}>
                         <div className="form-row">
                             <div className="form-group col-md-6">
 
@@ -57,12 +78,15 @@ const AdminData = () => {
                             </div>
                         </div>
                         <div className="d-flex flex-row bd-highlight mb-3">
-                            <button type="submit" className="btn btn-success mt-2 ml-auto">submit</button>
+                            {preloader?
+                                <button disabled type="submit" className="btn btn-success mt-2 ml-auto">submit</button>
+                                :
+                                <button type="submit" className="btn btn-success mt-2 ml-auto">submit</button>
+                            }
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
     );
 };
 

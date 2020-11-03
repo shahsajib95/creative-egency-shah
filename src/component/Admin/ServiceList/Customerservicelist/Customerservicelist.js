@@ -25,24 +25,31 @@ const Customerservicelist = () => {
 
 
     return (
-        <div className="content-wrapper">
-            <div className="container-fluid">
+        <div className="content">
+             <div className="sidebar-head">
+            <h5>Service List</h5>
+            </div>
+
                 {preloaderVisibility ?  <Preloader/>
                 :
-                <div className="row">
+                <div className="row mt-3 d-flex justify-content-around ">
                     {myorders.map(pd =>
-                        <div key={pd._id} className="col-md-5 offset-md-1 bg-white p-5 mt-3" style={{ borderRadius: '20px' }}>
+                        <div key={pd._id} className="col-md-5 bg-white p-4 mt-3" style={{ borderRadius: '20px' }}>
                             <div className="d-flex justify-content-between align-items-start">
-                                {pd.photo.img === undefined ? <img className="w-25 mb-3" src={image} alt="" /> 
-                                :  <img className="w-25 mb-3" src={`data:image/png;base64,${pd.photo.img}`} alt="" />}
+                                {pd.photo === null ? <img className="w-25 mb-3" src={image} alt="" /> 
+                                 : <img className="w-25 mb-3" src={`data:image/png;base64,${pd.photo.img}`} alt="" />}
                                 <button className="btn-sm btn btn-outline-danger ml-5" role="alert">{pd.status}</button>
                             </div>
-                            <h5>{pd.title}</h5>
+                            <h5>{pd.job}</h5>
                             <p>{pd.description}</p>
                         </div>)}
+                {myorders.length === 0 &&  
+                    <div className="alert alert-warning" role="alert">
+                    You have No services on list
+                    </div>}
                 </div>}
+               
             </div>
-        </div>
     );
 };
 

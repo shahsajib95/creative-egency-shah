@@ -16,9 +16,9 @@ const Reviews = () => {
     return (
         <div className="client-section  py-5" id="ourteam">
            <h1 className="text-center">Clients <span className="text-success">Feedback</span></h1>
-               <div className="row d-flex justify-content-around m-3">
+               <div className="row d-flex justify-content-around p-5">
                    {allreviews.map(review=>
-                    <div key={review._id} className="col-md-3 feedbacks p-3 mt-5 ">
+                    <div key={review._id} className="col-md-3 offset-md-1 feedbacks p-3 mt-5 ">
                         <div className="d-flex justify-content-start align-items-center">
                         <img className="circle-image mr-3" src={review.photo} alt="reviewerimage"/>
                         <div>
@@ -26,7 +26,7 @@ const Reviews = () => {
                         <h6>{review.company}</h6>
                         </div>
                         </div>
-                        <p className="text-muted">{review.description}</p>
+                        <p className="text-muted mt-2" style={{textAlign: "justify"}}>{review.description}</p>
                    </div>)}
                </div>
         </div>
