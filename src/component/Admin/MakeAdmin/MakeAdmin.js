@@ -11,7 +11,7 @@ const MakeAdmin = () => {
 
     const onSubmit = data => {
         setPreloader(true)
-        fetch('https://pure-harbor-44563.herokuapp.com/makeAdmin',{
+        fetch('http://localhost:5000/makeAdmin',{
             method: 'POST',
             headers: {'Content-Type' : 'Application/json'},
             body: JSON.stringify(data)

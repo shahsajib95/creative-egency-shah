@@ -9,10 +9,10 @@ const Adminservicelist = () => {
     const [allOrders, setAllOrders] = useState([])
     const [selctStatus, setSelectStatus] = useState(null)
     const [preloaderVisibility, setPreloaderVisibility] = useState(true)
-
+    const user = JSON.parse(sessionStorage.getItem('user'))
     useEffect(() => {
         (async () => {
-            await fetch('https://pure-harbor-44563.herokuapp.com/allOrders?email=' + loggedIn.email, {
+            await fetch('http://localhost:5000/allOrders?email=' +  user.email, {
                 method: 'GET',
                 headers: { 'Content-Type': 'Application/json' }
             })
@@ -22,11 +22,11 @@ const Adminservicelist = () => {
                     setPreloaderVisibility(false)
                 })
         })()
-    }, [loggedIn.email])
+    }, [user.email])
 
     const handleChange = (status) => {
         const data = { id: selctStatus._id, status }
-        fetch(`https://pure-harbor-44563.herokuapp.com/updateStatus`, {
+        fetch(`http://localhost:5000/updateStatus`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)

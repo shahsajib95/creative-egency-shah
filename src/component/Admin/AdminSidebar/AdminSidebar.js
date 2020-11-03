@@ -13,27 +13,16 @@ const AdminSidebar = () => {
     const [admin, setAdmin] = useState(false)
     const user = JSON.parse(sessionStorage.getItem('user'))
     useEffect(()=>{
-        if(loggedIn.emil === ''){
-          const user = JSON.parse(sessionStorage.getItem('user'))
-          setLoggedIn({
-            name: user.name,
-            email: user.email,
-            photo: user.photo
-          })
-          console.log(user.email)
-        }
-      }, [])
-    useEffect(()=>{
         (async()=>{
-            await fetch('https://pure-harbor-44563.herokuapp.com/isAdmin',{
+            await fetch('http://localhost:5000/isAdmin',{
                 method: "POST",
                 headers: {'content-type': 'application/json'},
-                body: JSON.stringify({email: loggedIn.email || user.email})
+                body: JSON.stringify({email: user.email})
             })
             .then(res=>res.json())
             .then(data=>setAdmin(data))
         })()
-    }, [])
+    }, [user.email])
 
     return (
         <div className="sidebar">

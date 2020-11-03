@@ -21,7 +21,7 @@ const CustomerOrder = () => {
         const status = { status: 'pending' }
         const allInfo = { ...status, title, description, photo, ...data };
         
-        fetch('https://pure-harbor-44563.herokuapp.com/placedOrders', {
+        fetch('http://localhost:5000/placedOrders', {
             method: 'POST',
             headers: { 'Content-Type': 'Application/json' },
             body: JSON.stringify(allInfo)

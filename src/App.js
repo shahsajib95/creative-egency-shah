@@ -35,7 +35,7 @@ console.log(loggedIn)
 
   useEffect(()=>{
     (async () => {
-      await fetch('https://pure-harbor-44563.herokuapp.com/allservices')
+      await fetch('http://localhost:5000/allservices')
       .then(res=>res.json())
       .then(data=>{
         setAllServices(data)
