@@ -30,8 +30,9 @@ const AdminData = () => {
         })
         .then(result=>{
             setPreloader(false)
-            setSuccess(result)
+            setSuccess(result) 
             window.location.reload()
+            
         })
     }
 

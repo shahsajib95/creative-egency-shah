@@ -17,7 +17,6 @@ const Customerservicelist = () => {
                 .then(res => res.json())
                 .then(data => {
                     setMyOrders(data)
-                    console.log(data)
                     setPreloaderVisibility(false)
                 })
         })()

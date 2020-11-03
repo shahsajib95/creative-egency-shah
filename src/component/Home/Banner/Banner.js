@@ -1,7 +1,13 @@
 import React from 'react';
 import bgImage from '../../../images/logos/Frame.png';
-import './Banner.css'
+import './Banner.css';
+import { useSpring, animated } from 'react-spring'
+
+const calc = (x, y) => [-(y - window.innerHeight / 2) / 20, (x - window.innerWidth / 2) / 20, 1.1]
+const trans = (x, y, s) => `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(${s})`
+
 const Banner = () => {
+    const [props, set] = useSpring(() => ({ xys: [0, 0, 1], config: { mass: 5, tension: 350, friction: 40 } }))
     return (
         <div className="bg-warning banner" id="home">
             <div className="container">
@@ -14,7 +20,13 @@ const Banner = () => {
                         <button className="btn main-btn pl-5 pr-5">Hire us</button>
                     </div>
                     <div className="col-md-6">
-                        <img className="w-100" src={bgImage} alt="" />
+                        
+                        <animated.img 
+                        onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
+                        onMouseLeave={() => set({ xys: [0, 0, 1] })}
+                        className="w-100" src={bgImage} alt="" 
+                        style={{ transform: props.xys.interpolate(trans) }}
+                        />
                     </div>
                 </div>
             </div>

@@ -11,14 +11,24 @@ import { UserContext } from '../../../App';
 const AdminSidebar = () => {
     const [loggedIn, setLoggedIn] = useContext(UserContext)
     const [admin, setAdmin] = useState(false)
-    console.log(admin)
-
+    const user = JSON.parse(sessionStorage.getItem('user'))
+    useEffect(()=>{
+        if(loggedIn.emil === ''){
+          const user = JSON.parse(sessionStorage.getItem('user'))
+          setLoggedIn({
+            name: user.name,
+            email: user.email,
+            photo: user.photo
+          })
+          console.log(user.email)
+        }
+      }, [])
     useEffect(()=>{
         (async()=>{
             await fetch('https://pure-harbor-44563.herokuapp.com/isAdmin',{
                 method: "POST",
                 headers: {'content-type': 'application/json'},
-                body: JSON.stringify({email: loggedIn.email})
+                body: JSON.stringify({email: loggedIn.email || user.email})
             })
             .then(res=>res.json())
             .then(data=>setAdmin(data))

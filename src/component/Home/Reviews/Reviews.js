@@ -7,7 +7,6 @@ const Reviews = () => {
             await fetch('https://pure-harbor-44563.herokuapp.com/allreviews')
                     .then(res=>res.json())
                     .then(data=>{ 
-                        console.log(data)
                         setAllReviews(data)
                     }
                     )

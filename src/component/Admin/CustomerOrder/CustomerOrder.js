@@ -20,8 +20,7 @@ const CustomerOrder = () => {
         const photo = purchaseService.image ? purchaseService.image : null;
         const status = { status: 'pending' }
         const allInfo = { ...status, title, description, photo, ...data };
-
-        console.log(allInfo)
+        
         fetch('https://pure-harbor-44563.herokuapp.com/placedOrders', {
             method: 'POST',
             headers: { 'Content-Type': 'Application/json' },
@@ -29,9 +28,10 @@ const CustomerOrder = () => {
         })
             .then(res => res.json())
             .then(result => {
-                setSuccess(result)
-                setPreloader(false)
+                setSuccess(result) 
                 window.location.reload()
+                setPreloader(false)
+                
             })
     }
     const handleFile = () => {

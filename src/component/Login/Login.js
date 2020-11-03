@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Login.css';
 import logo from '../../images/logo.png';
 import google from '../../images/logos/googlelogin.png'
@@ -10,9 +10,6 @@ const Login = () => {
 
     initializeFirebaseApp()
     const [loggedIn, setLoggedIn] = useContext(UserContext);
-    const [userData, serUserData] = useState([]);
-    // const user = {}
-    // const userInfo = sessionStorage.getItem('user', JSON.parse(user));;
     let history = useHistory();
     let location = useLocation();
     let { from } = location.state || { from: { pathname: "/ServiceList" } };

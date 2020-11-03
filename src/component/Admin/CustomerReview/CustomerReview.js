@@ -24,7 +24,6 @@ const CustomerReview = () => {
                 setSuccess(data)
                 setPreloader(false)
                 window.location.reload()
-
             })
 
     }

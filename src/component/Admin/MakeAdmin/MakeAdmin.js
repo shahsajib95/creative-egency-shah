@@ -18,12 +18,11 @@ const MakeAdmin = () => {
         })
         .then(res=>res.json())
         .then(result=>{
-            setSuccess(result)
-            setPreloader(false)
+            setSuccess(result) 
             window.location.reload()
+            setPreloader(false)
+            
         })
-
-        console.log(data)
     }
     return (
         <div className="content">

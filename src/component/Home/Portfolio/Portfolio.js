@@ -9,7 +9,7 @@ import imageFive from '../../../images/carousel-5.png'
 const Portfolio = () => {
 
     return (
-        <div className="portfolio-section text-center py-5" id="portfolio">
+        <div className="portfolio-section text-center p-5" id="portfolio">
             <div className="container">
                 <h1 className="text-white mb-5">Here are some of <span className="text-success">our works</span></h1>
 

@@ -21,7 +21,7 @@ export const googleSignIn = () =>{
             photo: photoURL,
             email: email
         }
-        localStorage.setItem('user', JSON.stringify(userData));
+        sessionStorage.setItem('user', JSON.stringify(userData));
         return userData
     })
 }

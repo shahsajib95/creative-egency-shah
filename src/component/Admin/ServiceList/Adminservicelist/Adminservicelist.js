@@ -18,7 +18,6 @@ const Adminservicelist = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
                     setAllOrders(data)
                     setPreloaderVisibility(false)
                 })
@@ -27,8 +26,6 @@ const Adminservicelist = () => {
 
     const handleChange = (status) => {
         const data = { id: selctStatus._id, status }
-
-        console.log(data)
         fetch(`https://pure-harbor-44563.herokuapp.com/updateStatus`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
@@ -36,7 +33,7 @@ const Adminservicelist = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                
             })
 
     }
