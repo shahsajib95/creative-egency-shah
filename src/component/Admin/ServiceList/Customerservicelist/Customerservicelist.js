@@ -8,10 +8,10 @@ const Customerservicelist = () => {
     const [loggedIn, setLoggedIn] = useContext(UserContext)
     const [preloaderVisibility, setPreloaderVisibility] = useState(true);
     const [myorders, setMyOrders] = useState([]);
-    const user = JSON.parse(sessionStorage.getItem('user'))
+    
     useEffect(() => {
         (async () => {
-            await fetch('https://pure-harbor-44563.herokuapp.com/myOrders?email=' + user.email, {
+            await fetch('https://pure-harbor-44563.herokuapp.com/myOrders?email=' + loggedIn.email, {
                 method: 'GET',
                 headers: { 'Content-Type': 'Application/json' }
             })
@@ -21,7 +21,7 @@ const Customerservicelist = () => {
                     setPreloaderVisibility(false)
                 })
         })()
-    }, [user.email])
+    }, [loggedIn.email])
 
 
     return (

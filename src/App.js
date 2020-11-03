@@ -23,14 +23,12 @@ export const PurchaseContext = createContext();
 function App() {
 
   const [allservices, setAllServices] = useState([]);
+  const user = JSON.parse(sessionStorage.getItem('user'));
   const [loggedIn, setLoggedIn] = useState({
     name: '',
     email: '',
     photo: ''
   });
-console.log(loggedIn)
-
-
   const [purchaseService, setPurchseService] = useState([])
 
   useEffect(()=>{

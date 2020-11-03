@@ -9,7 +9,7 @@ const Reviews = () => {
                     .then(data=>{ 
                         setAllReviews(data)
                     }
-                    )
+                )
         })()
     }, [])
     return (

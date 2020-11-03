@@ -9,10 +9,9 @@ const Adminservicelist = () => {
     const [allOrders, setAllOrders] = useState([])
     const [selctStatus, setSelectStatus] = useState(null)
     const [preloaderVisibility, setPreloaderVisibility] = useState(true)
-    const user = JSON.parse(sessionStorage.getItem('user'))
     useEffect(() => {
         (async () => {
-            await fetch('https://pure-harbor-44563.herokuapp.com/allOrders?email=' +  user.email, {
+            await fetch('https://pure-harbor-44563.herokuapp.com/allOrders?email=' + loggedIn.email, {
                 method: 'GET',
                 headers: { 'Content-Type': 'Application/json' }
             })
@@ -22,7 +21,7 @@ const Adminservicelist = () => {
                     setPreloaderVisibility(false)
                 })
         })()
-    }, [user.email])
+    }, [loggedIn.email])
 
     const handleChange = (status) => {
         const data = { id: selctStatus._id, status }
@@ -33,7 +32,7 @@ const Adminservicelist = () => {
         })
             .then(res => res.json())
             .then(data => {
-                
+
             })
 
     }
@@ -42,11 +41,11 @@ const Adminservicelist = () => {
     return (
         <div className="content">
             <div className="sidebar-head">
-            <h5>Service List</h5>
+                <h5>Service List</h5>
             </div>
-                <div className="table-container mt-3">
-                {preloaderVisibility ? <Preloader/>
-                        :
+            <div className="table-container mt-3">
+                {preloaderVisibility ? <Preloader />
+                    :
                     <table className="table">
                         <thead className="table-header">
                             <tr>
@@ -77,8 +76,8 @@ const Adminservicelist = () => {
                                 </tr>)}
                         </tbody>
                     </table>}
-                </div>          
             </div>
+        </div>
     );
 };
 
