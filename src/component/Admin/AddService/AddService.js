@@ -20,7 +20,7 @@ const AdminData = () => {
         formData.append('title', data.title)
         formData.append('description', data.description)
 
-        fetch('http://localhost:5000/addService', {
+        fetch('https://pure-harbor-44563.herokuapp.com/addService', {
             method: 'POST',
             body: formData
         })

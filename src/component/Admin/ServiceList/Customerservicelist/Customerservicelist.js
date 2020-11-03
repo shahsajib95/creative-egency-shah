@@ -10,7 +10,7 @@ const Customerservicelist = () => {
     const [myorders, setMyOrders] = useState([]);
     useEffect(() => {
         (async () => {
-            await fetch('http://localhost:5000/myOrders?email=' + loggedIn.email, {
+            await fetch('https://pure-harbor-44563.herokuapp.com/myOrders?email=' + loggedIn.email, {
                 method: 'GET',
                 headers: { 'Content-Type': 'Application/json' }
             })

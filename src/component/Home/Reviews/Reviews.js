@@ -4,7 +4,7 @@ const Reviews = () => {
     const [allreviews, setAllReviews] = useState([]);
     useEffect(()=>{
         (async ()=>{
-            await fetch('http://localhost:5000/allreviews')
+            await fetch('https://pure-harbor-44563.herokuapp.com/allreviews')
                     .then(res=>res.json())
                     .then(data=>{ 
                         console.log(data)

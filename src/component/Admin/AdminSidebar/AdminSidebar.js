@@ -15,7 +15,7 @@ const AdminSidebar = () => {
 
     useEffect(()=>{
         (async()=>{
-            await fetch('http://localhost:5000/isAdmin',{
+            await fetch('https://pure-harbor-44563.herokuapp.com/isAdmin',{
                 method: "POST",
                 headers: {'content-type': 'application/json'},
                 body: JSON.stringify({email: loggedIn.email})

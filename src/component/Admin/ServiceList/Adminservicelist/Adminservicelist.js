@@ -11,7 +11,7 @@ const Adminservicelist = () => {
 
     useEffect(() => {
         (async () => {
-            await fetch('http://localhost:5000/allOrders?email=' + loggedIn.email, {
+            await fetch('https://pure-harbor-44563.herokuapp.com/allOrders?email=' + loggedIn.email, {
                 method: 'GET',
                 headers: { 'Content-Type': 'Application/json' }
             })
@@ -28,7 +28,7 @@ const Adminservicelist = () => {
         const data = { id: selctStatus._id, status }
 
         console.log(data)
-        fetch(`http://localhost:5000/updateStatus`, {
+        fetch(`https://pure-harbor-44563.herokuapp.com/updateStatus`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)

@@ -23,16 +23,22 @@ export const PurchaseContext = createContext();
 function App() {
 
   const [allservices, setAllServices] = useState([]);
+  const [userData, setUserData] = useState({});
   const [loggedIn, setLoggedIn] = useState({
     name: '',
     email: '',
     photo: ''
   });
+if(loggedIn.email === '' || null){
+  const user = JSON.parse(localStorage.getItem('user', userData))
+  setLoggedIn(user)
+  console.log(loggedIn)
+}
   const [purchaseService, setPurchseService] = useState([])
 
   useEffect(()=>{
     (async () => {
-      await fetch('http://localhost:5000/allservices')
+      await fetch('https://pure-harbor-44563.herokuapp.com/allservices')
       .then(res=>res.json())
       .then(data=>{
         console.log(data)
