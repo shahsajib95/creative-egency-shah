@@ -1,10 +1,24 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-scroll';
 import './Navbar.css';
 import logo from '../../../images/logo.png';
+import { UserContext } from '../../../App';
 
 const Navbar = () => {
-
+    const [loggedIn, setLoggedIn] = useContext(UserContext);
+    const [admin, setAdmin] = useState(false)
+    
+    useEffect(()=>{
+        (async()=>{
+            await fetch('http://localhost:5000/isAdmin',{
+                method: "POST",
+                headers: {'content-type': 'application/json'},
+                body: JSON.stringify({email: loggedIn.email})
+            })
+            .then(res=>res.json())
+            .then(data=>setAdmin(data))
+        })()
+    }, [ loggedIn.email])
     return (
         <div className="bg-warning">
             <div className="container">
@@ -28,8 +42,18 @@ const Navbar = () => {
                             <li className="nav-item">
                                 <Link style={{cursor: 'pointer'}} to="contact" smooth={true} duration={1000} className="nav-link ml-3" >Contact us</Link>
                             </li>
+                            {admin &&
+                            <li className="nav-item">
+                                <a  href="/serviceList"  className="nav-link ml-3" >Dashboard</a>
+                            </li>}
+                            {!admin && loggedIn.email &&
+                            <li className="nav-item">
+                                <a  href="/orders"  className="nav-link ml-3" >Dashboard</a>
+                            </li>}
                         </ul>
-                        <a href="/login"><button className="btn main-btn ml-3">Login</button></a>
+                        {loggedIn.name ? loggedIn.name
+                            :
+                            <a href="/login"><button className="btn main-btn ml-3">Login</button></a>}
                     </div>
                 </nav>
             </div>

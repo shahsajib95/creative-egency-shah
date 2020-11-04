@@ -36,7 +36,7 @@ const Admin = () => {
                      <Route path="/ServiceList">
                        <Adminservicelist/>
                     </Route>
-                    <Route path="/addService">
+                    <Route exact path="/addService">
                     <AddService/>
                     </Route>
                     <Route path="/makeAdmin">
@@ -48,7 +48,7 @@ const Admin = () => {
                     <Route path="/ServiceList">
                        <Customerservicelist/>
                     </Route>
-                    <Route path="/orders">
+                    <Route exact path="/orders">
                         <CustomerOrder/>
                     </Route>
                     <Route path="/addReview">

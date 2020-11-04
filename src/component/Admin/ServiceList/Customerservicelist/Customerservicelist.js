@@ -8,14 +8,13 @@ const Customerservicelist = () => {
     const [loggedIn, setLoggedIn] = useContext(UserContext)
     const [preloaderVisibility, setPreloaderVisibility] = useState(true);
     const [myorders, setMyOrders] = useState([]);
-    const token = sessionStorage.getItem('token');
     useEffect(() => {
         (async () => {
             await fetch('http://localhost:5000/myOrders?email=' + loggedIn.email, {
                 method: 'GET',
                 headers: { 
                     'Content-Type': 'Application/json',
-                    authorization: `Bearer ${token}`
+                    authorization: `Bearer ${sessionStorage.getItem('token')}`
             }
             })
                 .then(res => res.json())
@@ -46,10 +45,10 @@ const Customerservicelist = () => {
                             <h5>{pd.job}</h5>
                             <p>{pd.description}</p>
                         </div>)}
-                {myorders.length === 0 &&  
-                    <div className="alert alert-warning" role="alert">
+                </div>}
+                {myorders  === '' &&
+                <div className="alert alert-warning" role="alert">
                     You have No services on list
-                    </div>}
                 </div>}
                
             </div>

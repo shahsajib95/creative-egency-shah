@@ -21,17 +21,17 @@ const SimpleCardForm = ({orderInfo}) => {
   const elements = useElements();
 
   const handleSubmit = async (event) => {
-    setPreloader(true)
     event.preventDefault();
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: 'card',
       card: elements.getElement(CardNumberElement, CardExpiryElement, CardCvcElement),
     });
-    console.log(error, paymentMethod)
     if(error){
-      setSuccess()
+      setSuccess(false)
+      setPayError(error.message)
     }
     if(paymentMethod){
+      setPreloader(true)
       setPayError()
       const allInfo = { 
     status: 'pending', 
@@ -43,6 +43,7 @@ const SimpleCardForm = ({orderInfo}) => {
     payId: paymentMethod.id,
     payDate: new Date()  };
       console.log(allInfo)
+      
      fetch('http://localhost:5000/placedOrders', {
             method: 'POST',
             headers: { 'Content-Type': 'Application/json' },
@@ -51,7 +52,7 @@ const SimpleCardForm = ({orderInfo}) => {
             .then(res => res.json())
             .then(result => {
                 setSuccess(result) 
-                window.location.reload()
+                window.location = "/serviceList";
                 setPreloader(false)
 
             })
@@ -61,17 +62,17 @@ const SimpleCardForm = ({orderInfo}) => {
   return (
     
     <>
-       {preloader && <div className="alert alert-warning mt-2" role="alert">
+       {preloader && success && <div className="alert alert-warning mt-2" role="alert">
                <CircularProgress />
                 Checking Payment Info
                </div>}
       
         {payError &&
-        <div className="alert alert-danger" role="alert">
+        <div className="alert alert-danger mt-3" role="alert">
         {payError}
         </div>}
         {success &&
-        <div className="alert alert-success" role="alert">
+        <div className="alert alert-success mt-3" role="alert">
           Order Placed Successfully
         </div>}
         

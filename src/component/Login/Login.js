@@ -12,13 +12,13 @@ const Login = () => {
     const [loggedIn, setLoggedIn] = useContext(UserContext);
     let history = useHistory();
     let location = useLocation();
-    let { from } = location.state || { from: { pathname: "/ServiceList" } };
+    let { from } = location.state || { from: { pathname: "/" } };
 
     const logInWithGoogle = () => {
         googleSignIn()
             .then(res => {
-                setLoggedIn(res)
                 idToken()
+                setLoggedIn(res)
                 history.replace(from);
             })
     }
