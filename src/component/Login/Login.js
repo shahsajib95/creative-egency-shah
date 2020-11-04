@@ -3,7 +3,7 @@ import './Login.css';
 import logo from '../../images/logo.png';
 import google from '../../images/logos/googlelogin.png'
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { googleSignIn, initializeFirebaseApp } from './auth';
+import { googleSignIn, idToken, initializeFirebaseApp, removeToken } from './auth';
 import { UserContext } from '../../App';
 
 const Login = () => {
@@ -18,6 +18,7 @@ const Login = () => {
         googleSignIn()
             .then(res => {
                 setLoggedIn(res)
+                idToken()
                 history.replace(from);
             })
     }

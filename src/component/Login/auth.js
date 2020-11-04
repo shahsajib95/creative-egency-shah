@@ -1,3 +1,4 @@
+
 import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
@@ -16,13 +17,22 @@ export const googleSignIn = () =>{
     return firebase.auth().signInWithPopup(provider)
     .then(res=>{
         const {displayName, photoURL, email} = res.user;
+        
         const userData ={
             name: displayName,
             photo: photoURL,
-            email: email
+            email: email,
         }
-        sessionStorage.setItem('user', JSON.stringify(userData));
-        return userData
+        sessionStorage.setItem('user', JSON.stringify(userData))
+        return userData;
     })
+}
+
+export const idToken = () =>{
+    return firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+        sessionStorage.setItem('token', idToken)
+      }).catch(function(error) {
+        // Handle error
+      });
 }
 

@@ -15,7 +15,7 @@ import Reviews from './component/Home/Reviews/Reviews';
 import Contact from './component/Home/Contact/Contact';
 import Services from './component/Home/Services/Services';
 import Admin from './component/Admin/Admin/Admin';
-
+import Payment from './component/Payment/Payment';
 export const ServiceContext = createContext();
 export const UserContext = createContext();
 export const PurchaseContext = createContext();
@@ -23,17 +23,31 @@ export const PurchaseContext = createContext();
 function App() {
 
   const [allservices, setAllServices] = useState([]);
-  const user = JSON.parse(sessionStorage.getItem('user'));
+  const user = JSON.parse(sessionStorage.getItem('user'))
+  console.log(user)
   const [loggedIn, setLoggedIn] = useState({
     name: '',
     email: '',
     photo: ''
   });
+  console.log(loggedIn)
+  useEffect(()=>{
+    if(user){
+      setLoggedIn(user)
+    }else{
+      setLoggedIn({
+        name: '',
+      email: '',
+      photo: ''
+      })
+    }
+  },[])
+ 
   const [purchaseService, setPurchseService] = useState([])
 
   useEffect(()=>{
     (async () => {
-      await fetch('https://pure-harbor-44563.herokuapp.com/allservices')
+      await fetch('http://localhost:5000/allservices')
       .then(res=>res.json())
       .then(data=>{
         setAllServices(data)
