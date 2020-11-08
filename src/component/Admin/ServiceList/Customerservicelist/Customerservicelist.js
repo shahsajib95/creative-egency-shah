@@ -6,11 +6,16 @@ import image from '../../../../images/icons/service1.png'
 
 const Customerservicelist = () => {
     const [loggedIn, setLoggedIn] = useContext(UserContext)
+    const removeUserToken = () =>{
+        sessionStorage.removeItem('user')
+        setLoggedIn()
+        window.location = '/'
+    }
     const [preloaderVisibility, setPreloaderVisibility] = useState(true);
     const [myorders, setMyOrders] = useState([]);
     useEffect(() => {
         (async () => {
-            await fetch('http://localhost:5000/myOrders?email=' + loggedIn.email, {
+            await fetch('https://pure-harbor-44563.herokuapp.com/myOrders?email=' + loggedIn.email, {
                 method: 'GET',
                 headers: { 
                     'Content-Type': 'Application/json',
@@ -23,13 +28,14 @@ const Customerservicelist = () => {
                     setPreloaderVisibility(false)
                 })
         })()
-    }, [loggedIn.email])
+    }, [])
 
 
     return (
         <div className="content">
-             <div className="sidebar-head">
+             <div className="sidebar-head d-flex justify-content-between">
             <h5>Service List</h5>
+            <button className="btn btn-warning" onClick={()=>removeUserToken()}>Sign Out</button>
             </div>
 
                 {preloaderVisibility ?  <Preloader/>
@@ -45,11 +51,12 @@ const Customerservicelist = () => {
                             <h5>{pd.job}</h5>
                             <p>{pd.description}</p>
                         </div>)}
-                </div>}
-                {myorders  === '' &&
+                        {myorders.length  === 0 &&
                 <div className="alert alert-warning" role="alert">
                     You have No services on list
                 </div>}
+                </div>}
+               
                
             </div>
     );

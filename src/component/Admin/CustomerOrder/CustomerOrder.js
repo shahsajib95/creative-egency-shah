@@ -10,6 +10,11 @@ const stripePromise = loadStripe('pk_test_pS06V8JIFXeKVNV03PxEcd3Y00uNbBWVhq');
 
 const CustomerOrder = () => {
     const [loggedIn, setLoggedIn] = useContext(UserContext)
+    const removeUserToken = () =>{
+        sessionStorage.removeItem('user')
+        setLoggedIn()
+        window.location = '/'
+    }
     const { register, handleSubmit, errors } = useForm();
     const [success, setSuccess] = useState(false);
     const [orderInfo, setorderInfo] = useState(null);
@@ -24,8 +29,9 @@ const CustomerOrder = () => {
 
     return (
         <div className="content">
-            <div className="sidebar-head">
+            <div className="sidebar-head d-flex justify-content-between">
                 <h5>Order</h5>
+                <button className="btn btn-warning" onClick={()=>removeUserToken()}>Sign Out</button>
             </div>
             
                 <div>

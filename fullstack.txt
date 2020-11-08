@@ -1,0 +1,8 @@
+1 DB - sequelDB, MySQl Oracle - ORM
+2 OOP - object oriented programming
+3 Multi threading
+4 Node filesystem
+5 Athentication - microservice
+6 Docker Deploy, Conteranize
+7 Api call - log - datastore - Api Create
+8 

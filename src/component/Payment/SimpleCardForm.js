@@ -44,7 +44,7 @@ const SimpleCardForm = ({orderInfo}) => {
     payDate: new Date()  };
       console.log(allInfo)
       
-     fetch('http://localhost:5000/placedOrders', {
+     fetch('https://pure-harbor-44563.herokuapp.com/placedOrders', {
             method: 'POST',
             headers: { 'Content-Type': 'Application/json' },
             body: JSON.stringify(allInfo)

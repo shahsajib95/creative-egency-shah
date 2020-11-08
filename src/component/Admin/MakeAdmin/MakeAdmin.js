@@ -1,9 +1,16 @@
 import { CircularProgress } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import green from '@material-ui/core/colors/green';
+import { UserContext } from '../../../App';
 
 const MakeAdmin = () => {
+    const [loggedIn, setLoggedIn] = useContext(UserContext)
+    const removeUserToken = () =>{
+        sessionStorage.removeItem('user')
+        setLoggedIn()
+        window.location = '/'
+    }
     const color = green[50];
     const { register, handleSubmit, errors } = useForm();
     const [success, setSuccess] = useState(null);
@@ -11,7 +18,7 @@ const MakeAdmin = () => {
 
     const onSubmit = data => {
         setPreloader(true)
-        fetch('http://localhost:5000/makeAdmin',{
+        fetch('https://pure-harbor-44563.herokuapp.com/makeAdmin',{
             method: 'POST',
             headers: {'Content-Type' : 'Application/json'},
             body: JSON.stringify(data)
@@ -26,8 +33,9 @@ const MakeAdmin = () => {
     }
     return (
         <div className="content">
-            <div className="sidebar-head">
+            <div className="sidebar-head d-flex justify-content-between">
             <h5>Make Admin</h5>
+            <button className="btn btn-warning" onClick={()=>removeUserToken()}>Sign Out</button>
             </div>
                 <div className="service-form mt-3">
                 {preloader && <div className="alert alert-warning mt-2" role="alert">

@@ -6,12 +6,17 @@ import Preloader from '../../../Preloader/Preloader';
 const Adminservicelist = () => {
 
     const [loggedIn, setLoggedIn] = useContext(UserContext)
+    const removeUserToken = () =>{
+        sessionStorage.removeItem('user')
+        setLoggedIn()
+        window.location = '/'
+    }
     const [allOrders, setAllOrders] = useState([])
     const [selctStatus, setSelectStatus] = useState(null)
     const [preloaderVisibility, setPreloaderVisibility] = useState(true)
     useEffect(() => {
         (async () => {
-            await fetch('http://localhost:5000/allOrders?email=' + loggedIn.email, {
+            await fetch('https://pure-harbor-44563.herokuapp.com/allOrders?email=' + loggedIn.email, {
                 method: 'GET',
                 headers: { 'Content-Type': 'Application/json' }
             })
@@ -25,7 +30,7 @@ const Adminservicelist = () => {
 
     const handleChange = (status) => {
         const data = { id: selctStatus._id, status }
-        fetch(`http://localhost:5000/updateStatus`, {
+        fetch(`https://pure-harbor-44563.herokuapp.com/updateStatus`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -40,8 +45,9 @@ const Adminservicelist = () => {
 
     return (
         <div className="content">
-            <div className="sidebar-head">
+            <div className="sidebar-head d-flex justify-content-between">
                 <h5>Service List</h5>
+                <button className="btn btn-warning" onClick={()=>removeUserToken()}>Sign Out</button>
             </div>
             <div className="table-container mt-3">
                 {preloaderVisibility ? <Preloader />

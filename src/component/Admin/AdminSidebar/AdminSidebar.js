@@ -14,7 +14,7 @@ const AdminSidebar = () => {
     
     useEffect(()=>{
         (async()=>{
-            await fetch('http://localhost:5000/isAdmin',{
+            await fetch('https://pure-harbor-44563.herokuapp.com/isAdmin',{
                 method: "POST",
                 headers: {'content-type': 'application/json'},
                 body: JSON.stringify({email: loggedIn.email})
@@ -22,7 +22,7 @@ const AdminSidebar = () => {
             .then(res=>res.json())
             .then(data=>setAdmin(data))
         })()
-    }, [ loggedIn.email])
+    },)
 
     return (
         <div className="sidebar">
@@ -46,7 +46,7 @@ const AdminSidebar = () => {
                             <Link className="side" to="/makeAdmin" style={{ cursor: 'pointer' }}><FontAwesomeIcon icon={faUserPlus}/> Make Admin</Link>
 
                         </>}
-                    
+                   
                 </div>
     );
 };

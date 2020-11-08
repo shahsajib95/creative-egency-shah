@@ -6,6 +6,11 @@ import { CircularProgress } from '@material-ui/core';
 
 const CustomerReview = () => {
     const [loggedIn, setLoggedIn] = useContext(UserContext)
+    const removeUserToken = () =>{
+        sessionStorage.removeItem('user')
+        setLoggedIn()
+        window.location = '/'
+    }
     const { register, handleSubmit, errors } = useForm();
     const [success, setSuccess] = useState(null)
     const [preloader, setPreloader] = useState(false)
@@ -15,7 +20,7 @@ const CustomerReview = () => {
         setPreloader(true)
         const photo = loggedIn.photo;
         const allInfo = { ...data, photo };
-        fetch('http://localhost:5000/addreview', {
+        fetch('https://pure-harbor-44563.herokuapp.com/addreview', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(allInfo)
@@ -29,8 +34,9 @@ const CustomerReview = () => {
     }
     return (
         <div className="content">
-            <div className="sidebar-head">
+            <div className="sidebar-head d-flex justify-content-between">
             <h5>Review</h5>
+            <button className="btn btn-warning" onClick={()=>removeUserToken()}>Sign Out</button>
             </div>
                 {preloader && <div className="alert alert-warning mt-2" role="alert">
                     <CircularProgress color={color} />Submitting Feedback
