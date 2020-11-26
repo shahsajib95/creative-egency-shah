@@ -25,8 +25,11 @@ const Customerservicelist = () => {
                 .then(res => res.json())
                 .then(data => {
                     setMyOrders(data)
+                    console.log(data)
                     setPreloaderVisibility(false)
                 })
+                .catch(() => console.log("Can’t access  response. Blocked by browser?"))
+
         })()
     }, [])
 
@@ -51,7 +54,7 @@ const Customerservicelist = () => {
                             <h5>{pd.job}</h5>
                             <p>{pd.description}</p>
                         </div>)}
-                        {myorders.length  === 0 &&
+                        {!myorders.length  &&
                 <div className="alert alert-warning" role="alert">
                     You have No services on list
                 </div>}

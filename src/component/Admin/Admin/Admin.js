@@ -14,49 +14,50 @@ const Admin = () => {
     const [loggedIn, setLoggedIn] = useContext(UserContext);
     const [admin, setAdmin] = useState(false)
 
-    useEffect( ()=>{
-    (async()=>{
-        await fetch('https://pure-harbor-44563.herokuapp.com/isAdmin',{
-            method: "POST",
-            headers: {'content-type': 'application/json'},
-            body: JSON.stringify({email:  loggedIn.email})
-        })
-        .then(res=>res.json())
-        .then(data=>setAdmin(data))
-    })()
-}, [loggedIn.email])
-
-    return(
+    useEffect(() => {
+        (async () => {
+            await fetch('https://pure-harbor-44563.herokuapp.com/isAdmin', {
+                method: "POST",
+                headers: { 'content-type': 'application/json' },
+                body: JSON.stringify({ email: loggedIn.email })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setAdmin(data)
+                })
+        })()
+    })
+    return (
         <div>
-            <AdminSidebar/>
-                <Switch>
-                   
-                    {admin ?
+            <AdminSidebar />
+            <Switch>
+
+                {admin ?
                     <>
-                     <Route path="/ServiceList">
-                       <Adminservicelist/>
-                    </Route>
-                    <Route exact path="/addService">
-                    <AddService/>
-                    </Route>
-                    <Route path="/makeAdmin">
-                        <MakeAdmin/>
-                    </Route>
+                        <Route path="/ServiceList">
+                            <Adminservicelist />
+                        </Route>
+                        <Route exact path="/addService">
+                            <AddService />
+                        </Route>
+                        <Route path="/makeAdmin">
+                            <MakeAdmin />
+                        </Route>
                     </>
                     :
                     <>
-                    <Route path="/ServiceList">
-                       <Customerservicelist/>
-                    </Route>
-                    <Route exact path="/orders">
-                        <CustomerOrder/>
-                    </Route>
-                    <Route path="/addReview">
-                        <CustomerReview/>
-                    </Route>
+                        <Route path="/ServiceList">
+                            <Customerservicelist />
+                        </Route>
+                        <Route exact path="/orders">
+                            <CustomerOrder />
+                        </Route>
+                        <Route path="/addReview">
+                            <CustomerReview />
+                        </Route>
                     </>}
-                </Switch>
-         </div>
+            </Switch>
+        </div>
     );
 };
 

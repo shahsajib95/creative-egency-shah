@@ -42,13 +42,9 @@ const Navbar = () => {
                             <li className="nav-item">
                                 <Link style={{cursor: 'pointer'}} to="contact" smooth={true} duration={1000} className="nav-link ml-3" >Contact us</Link>
                             </li>
-                            {admin &&
+                            {loggedIn.email &&
                             <li className="nav-item">
                                 <a  href="/serviceList"  className="nav-link ml-3" >Dashboard</a>
-                            </li>}
-                            {!admin && loggedIn.email &&
-                            <li className="nav-item">
-                                <a  href="/orders"  className="nav-link ml-3" >Dashboard</a>
                             </li>}
                         </ul>
                         {loggedIn.name ? loggedIn.name
